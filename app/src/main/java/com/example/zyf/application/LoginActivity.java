@@ -399,7 +399,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     });
                 }
 
-                if(returnCode.equals("-3")){
+                if(returnCode.equals("请求超时")){
                     LoginActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

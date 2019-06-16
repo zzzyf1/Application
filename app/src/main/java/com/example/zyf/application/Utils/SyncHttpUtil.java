@@ -22,7 +22,7 @@ public class SyncHttpUtil {
         }catch (Exception e){
             e.printStackTrace();
             //请求超时
-            return "-3";
+            return "请求超时";
         }
     }
     //函数重载，以json字符串方式请求服务器
@@ -37,7 +37,7 @@ public class SyncHttpUtil {
         }catch (Exception e){
             e.printStackTrace();
             //请求超时
-            return "-3";
+            return "请求超时";
         }
     }
 }

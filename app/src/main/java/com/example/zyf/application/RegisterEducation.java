@@ -456,12 +456,13 @@ public class RegisterEducation extends AppCompatActivity implements LoaderCallba
 
             try {
                 // Simulate network access.
-                /*
-                 * 0 商标以被注册
-                 * 1申请成功
-                 * 2数据库查询异常
-                 * 3请求超时*/
-                //测试
+                /**
+                 * -1 更新失败
+                 * -2 邮箱已被占用
+                 * -3 教育机构已通过审核，无法注册
+                 * -4 不能修改邮箱信息
+                 * 0 注册成功
+                 * 1 更新成功*/
                 education medu =new education();
                 email memail= new email();
                 phone mphone=new phone();
@@ -488,51 +489,64 @@ public class RegisterEducation extends AppCompatActivity implements LoaderCallba
                 information.setmPhone(list);
                 //将表单转换为json字符串
                 String str=transformJson.edu_InformationToJson(information);
-                //Log.d("RegisterActivity",str);
                 returnCode=SyncHttpUtil.sendOkHttpRequest("http://49.140.124.219:8081/myApplication/RegisterEducation",str);
 
             } catch (Exception e) {
-                returnCode="-3";
+                returnCode="-6";
                 return false;
             }
-            /*if(returnCode!=null&&!returnCode.equals("1")){
+            if(returnCode!=null&&!(returnCode.equals("0")||returnCode.equals("1"))){
                 return false;
             }else{
                 return true;
-            }*/
-            return  true;
-
+            }
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
+            AlertDialog.Builder dialog=new AlertDialog.Builder(RegisterEducation.this);
             if (success) {
-                AlertDialog.Builder dialog=new AlertDialog.Builder(RegisterEducation.this);
-                dialog.setTitle("申请成功");
-                dialog.setMessage("等待管理员审核中，在管理员审核成功前你可以修改申请信息，点击确定按钮返回上一层");
-                dialog.setCancelable(false);
-                dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-                dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                dialog.show();
-
-                //finish();
+                if(returnCode.equals("0")){
+                    dialog.setTitle("申请成功");
+                }else{
+                    dialog.setTitle("更改成功");
+                }
+                dialog.setMessage("等待审核中，审核成功前你可以修改申请信息");
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                if(returnCode.equals("-1")||returnCode.equals("-6")||returnCode.equals("请求超时")){
+                    dialog.setTitle("失败");
+                    dialog.setMessage("服务器忙请稍后再提交信息");
+                }
+                if(returnCode.equals("-2")){
+                    dialog.setTitle("失败");
+                    dialog.setMessage("邮箱已被占用");
+                }
+                if(returnCode.equals("-3")){
+                    dialog.setTitle("失败");
+                    dialog.setMessage("教育机构已通过审核，无法注册");
+                }
+                if(returnCode.equals("-4")){
+                    dialog.setTitle("失败");
+                    dialog.setMessage("审核通过前不能修改邮箱信息");
+                }
+
             }
+            dialog.setCancelable(false);
+            dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            dialog.show();
         }
 
         @Override
