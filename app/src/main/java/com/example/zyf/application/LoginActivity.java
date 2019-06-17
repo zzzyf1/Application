@@ -355,35 +355,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         Toast.makeText(LoginActivity.this,"欢迎用户 "+mEmail,Toast.LENGTH_SHORT).show();
                     }
                 });
-                //测试
-                education medu =new education();
-                email memail= new email();
-                phone mphone=new phone();
-                edu_Information information=new edu_Information();
-                medu.setAddress("翻斗大街一号");
-                medu.setDomain("幼儿园，小学");
-                medu.setDescribe("幼吾幼以及人之幼");
-                medu.setMaxAge(6);
-                medu.setMinAge(12);
-                medu.setStar(0);
-                memail.setuEmail("8888@edu.com");
-                memail.setuPassword("123456");
-                memail.setuType("1");
-                mphone.setPhoneNumber("12345678901");
-                information.setmEducation(medu);
-                information.setmEmail(memail);
-                List<phone> list=new ArrayList<phone>();
-                list.add(mphone);
-                information.setmPhone(list);
+                if(returnCode.equals("3")){
+                    Intent intent = new Intent(LoginActivity.this, SuperiorActivity.class);
+                    //intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
 
-                String str=transformJson.edu_InformationToJson(information);
-                Log.d("LoginActivity",str);
-                Intent intent = new Intent(LoginActivity.this, ItemListActivity.class);
-                //intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
+                    startActivity(intent);
 
-                startActivity(intent);
-
-                LoginActivity.this.finish();
+                    LoginActivity.this.finish();
+                }
             } else {
                 if(returnCode.equals("-1")){
                     mEmailView.setError(getString(R.string.no_match));
