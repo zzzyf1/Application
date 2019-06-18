@@ -1,19 +1,19 @@
 package com.example.zyf.application.Utils;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.zyf.application.Db.*;
 import com.example.zyf.application.Administration.eduApplication;
 import com.example.zyf.application.DetailActivity;
-import com.example.zyf.application.LoginActivity;
+
 import com.example.zyf.application.R;
-import com.example.zyf.application.SuperiorActivity;
+
 
 import java.util.List;
 
@@ -21,7 +21,8 @@ import java.util.List;
 
 public class eduApplicationAdapter extends RecyclerView.Adapter<eduApplicationAdapter.ViewHolder> {
 
-    private List<eduApplication> mApplication;
+    private List<edu_Information> mApplication;
+    private String applyListJson;
     //内部类实现缓存器,缓存布局以及该布局里包含的控件
     static class ViewHolder extends RecyclerView.ViewHolder{
         View itemView;
@@ -36,7 +37,7 @@ public class eduApplicationAdapter extends RecyclerView.Adapter<eduApplicationAd
             introduction=view.findViewById(R.id.introduction);
         }
     }
-    public eduApplicationAdapter(List<eduApplication> list){
+    public eduApplicationAdapter(List<edu_Information> list){
         mApplication=list;
     }
 
@@ -48,7 +49,9 @@ public class eduApplicationAdapter extends RecyclerView.Adapter<eduApplicationAd
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                intent.putExtra("itemPosition",holder.getAdapterPosition());
+                edu_Information edu=mApplication.get(holder.getAdapterPosition());
+                intent.putExtra("eduID",edu.getmEducation().getEducation_id());
+                intent.putExtra("edu_des",edu.getmEducation().getDomain());
                 v.getContext().startActivity(intent);
             }
         });
@@ -57,10 +60,12 @@ public class eduApplicationAdapter extends RecyclerView.Adapter<eduApplicationAd
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        eduApplication apply=mApplication.get(i);
-        viewHolder.imageView.setImageResource(apply.getImageId());
-        viewHolder.education_id.setText(apply.getApplicationId());
-        viewHolder.introduction.setText(apply.getIntroduction());
+        edu_Information apply=mApplication.get(i);
+        //教育机构图片
+
+        viewHolder.imageView.setImageResource(R.mipmap.cover);
+        viewHolder.education_id.setText(apply.getmEducation().getEducation_id());
+        viewHolder.introduction.setText(apply.getmEducation().getDomain());
     }
 
     @Override

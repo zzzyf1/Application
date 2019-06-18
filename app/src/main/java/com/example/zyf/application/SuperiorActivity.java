@@ -11,11 +11,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.zyf.application.Fragments.apply_fragment;
+import com.example.zyf.application.R;
 
 public class SuperiorActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -23,7 +23,7 @@ public class SuperiorActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    mTextMessage.setText(R.string.data_request);
                     replaceFragment(new apply_fragment());
                     return true;
                 case R.id.navigation_dashboard:

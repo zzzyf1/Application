@@ -29,6 +29,7 @@
     <string name="phone">公司电话</string>
     <string name="min">最小</string>
     <string name="max">最大</string>
+
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
@@ -38,6 +39,7 @@
     <string name="title_activity_register_education">注册为教育机构</string>
     <string name="title_activity_superior">SuperiorActivity</string>
     <string name="title_home">Home</string>
+    <string name="data_request">数据加载中...</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 </resources>

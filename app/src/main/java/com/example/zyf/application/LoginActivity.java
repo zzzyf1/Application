@@ -357,8 +357,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 });
                 if(returnCode.equals("3")){
                     Intent intent = new Intent(LoginActivity.this, SuperiorActivity.class);
-                    //intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
 
+                    //.putExtra("LoginID",mEmail);
                     startActivity(intent);
 
                     LoginActivity.this.finish();

@@ -25,7 +25,7 @@ public class SyncHttpUtil {
             return "请求超时";
         }
     }
-    //函数重载，以json字符串方式请求服务器
+    //函数重载，以json或普通字符串方式请求服务器
     public static String sendOkHttpRequest(String address,String json){
         try{
             OkHttpClient client=new OkHttpClient.Builder().readTimeout(5,TimeUnit.SECONDS).build();

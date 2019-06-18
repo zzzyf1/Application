@@ -513,7 +513,7 @@ public class RegisterEducation extends AppCompatActivity implements LoaderCallba
                 }else{
                     dialog.setTitle("更改成功");
                 }
-                dialog.setMessage("等待审核中，审核成功前你可以修改申请信息");
+                dialog.setMessage("等待审核中，审核成功前你可以修改除联系方式外的其它申请信息");
             } else {
                 if(returnCode.equals("-1")||returnCode.equals("-6")||returnCode.equals("请求超时")){
                     dialog.setTitle("失败");
