@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.zyf.application.Fragments.apply_fragment;
-import com.example.zyf.application.R;
+
 
 public class SuperiorActivity extends AppCompatActivity {
 

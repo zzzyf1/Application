@@ -42,6 +42,7 @@ public class eduApplicationAdapter extends RecyclerView.Adapter<eduApplicationAd
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+
         View view=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_content,viewGroup,false);
         final ViewHolder holder=new ViewHolder(view);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
