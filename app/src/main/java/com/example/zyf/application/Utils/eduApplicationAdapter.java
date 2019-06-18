@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.zyf.application.Db.*;
-import com.example.zyf.application.Administration.eduApplication;
 import com.example.zyf.application.DetailActivity;
 
 import com.example.zyf.application.R;
@@ -33,7 +32,7 @@ public class eduApplicationAdapter extends RecyclerView.Adapter<eduApplicationAd
             super(view);
             itemView=view;
             imageView=view.findViewById(R.id.edu_image);
-            education_id=view.findViewById(R.id.edu_id);
+            education_id=view.findViewById(R.id.edu_email);
             introduction=view.findViewById(R.id.introduction);
         }
     }
@@ -51,7 +50,13 @@ public class eduApplicationAdapter extends RecyclerView.Adapter<eduApplicationAd
                 Intent intent = new Intent(v.getContext(), DetailActivity.class);
                 edu_Information edu=mApplication.get(holder.getAdapterPosition());
                 intent.putExtra("eduID",edu.getmEducation().getEducation_id());
-                intent.putExtra("edu_des",edu.getmEducation().getDomain());
+                intent.putExtra("edu_email",edu.getmEmail().getuEmail());
+                intent.putExtra("edu_phone",edu.getmPhone().get(0).getPhoneNumber());
+                intent.putExtra("edu_address",edu.getmEducation().getAddress());
+                intent.putExtra("edu_domain",edu.getmEducation().getDomain());
+                intent.putExtra("edu_min_max",String.valueOf(edu.getmEducation().getMinAge())+"岁-"+String.valueOf(edu.getmEducation().getMaxAge())+"岁");
+                intent.putExtra("edu_introduction",edu.getmEducation().getDescribe());
+                intent.putExtra("edu_password",edu.getmEmail().getuPassword());
                 v.getContext().startActivity(intent);
             }
         });

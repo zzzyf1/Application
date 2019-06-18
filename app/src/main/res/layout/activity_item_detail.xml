@@ -39,7 +39,183 @@
         android:id="@+id/item_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/edu_email"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/prompt_email"
+                app:layout_constraintEnd_toEndOf="@+id/edu_id"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_id"
+                app:layout_constraintTop_toBottomOf="@+id/edu_id" />
+
+            <TextView
+                android:id="@+id/edu_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="47dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/education_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.083"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/edu_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/phone"
+                app:layout_constraintEnd_toEndOf="@+id/edu_id"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_id"
+                app:layout_constraintTop_toBottomOf="@+id/edu_email" />
+
+            <TextView
+                android:id="@+id/edu_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/address"
+                app:layout_constraintEnd_toEndOf="@+id/edu_phone"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_phone"
+                app:layout_constraintTop_toBottomOf="@+id/edu_phone" />
+
+            <TextView
+                android:id="@+id/edu_domain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/domain2"
+                app:layout_constraintEnd_toEndOf="@+id/edu_address"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_address"
+                app:layout_constraintTop_toBottomOf="@+id/edu_address" />
+
+            <TextView
+                android:id="@+id/edu_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/age"
+                app:layout_constraintEnd_toEndOf="@+id/edu_domain"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_domain"
+                app:layout_constraintTop_toBottomOf="@+id/edu_domain" />
+
+            <TextView
+                android:id="@+id/edu_introdution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/describe"
+                app:layout_constraintEnd_toEndOf="@+id/edu_domain"
+                app:layout_constraintStart_toStartOf="@+id/edu_domain"
+                app:layout_constraintTop_toBottomOf="@+id/edu_age" />
+
+            <TextView
+                android:id="@+id/edu_id2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="TextView"
+                android:textColor="@android:color/holo_blue_dark"
+                app:layout_constraintBaseline_toBaselineOf="@+id/edu_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.14"
+                app:layout_constraintStart_toEndOf="@+id/edu_id" />
+
+            <TextView
+                android:id="@+id/edu_email2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/edu_email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_id2" />
+
+            <TextView
+                android:id="@+id/edu_phone2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/edu_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_id2" />
+
+            <TextView
+                android:id="@+id/edu_address2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/edu_address"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_phone2" />
+
+            <TextView
+                android:id="@+id/edu_domain2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/edu_domain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_address2" />
+
+            <TextView
+                android:id="@+id/edu_age2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/edu_age"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/edu_age" />
+
+            <TextView
+                android:id="@+id/edu_introdution2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="192dp"
+                android:layout_marginRight="192dp"
+                android:maxEms="12"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/edu_introdution"
+                app:layout_constraintEnd_toEndOf="@+id/edu_age2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edu_age2" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -47,6 +223,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|start"
         android:layout_margin="@dimen/fab_margin"
+
         app:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@+id/item_detail_container"
         app:layout_anchorGravity="top|end"

@@ -50,12 +50,12 @@
                 android:layout_marginBottom="8dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/edu_image"
-                app:layout_constraintStart_toStartOf="@+id/edu_id"
-                app:layout_constraintTop_toBottomOf="@+id/edu_id"
+                app:layout_constraintStart_toStartOf="@+id/edu_email"
+                app:layout_constraintTop_toBottomOf="@+id/edu_email"
                 app:layout_constraintVertical_bias="0.625" />
 
             <TextView
-                android:id="@+id/edu_id"
+                android:id="@+id/edu_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
