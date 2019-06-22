@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.zyf.application.Fragments.apply_fragment;
+import com.example.zyf.application.Fragments.comment_fragment;
 
 
 public class SuperiorActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class SuperiorActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
+                    replaceFragment(new comment_fragment());
                     return true;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);

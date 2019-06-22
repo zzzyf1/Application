@@ -16,12 +16,9 @@ import com.example.zyf.application.R;
 
 import java.util.List;
 
-
-
 public class eduApplicationAdapter extends RecyclerView.Adapter<eduApplicationAdapter.ViewHolder> {
 
     private List<edu_Information> mApplication;
-    private String applyListJson;
     //内部类实现缓存器,缓存布局以及该布局里包含的控件
     static class ViewHolder extends RecyclerView.ViewHolder{
         View itemView;

@@ -44,4 +44,10 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="domain2">教育领域</string>
+
+    <!--评论-->
+    <string name="comment_id">评论ID</string>
+    <string name="discuss">发表评论</string>
+    <string name="comment_date">评论时间</string>
+    <string name="comment">评论内容</string>
 </resources>

@@ -12,6 +12,10 @@ public class resolveJson {
         return new Gson().fromJson(json,new TypeToken<List<edu_Information>>(){}.getType());
 
     }
+    public static List<comment> getCommentList(String json){
+        return new Gson().fromJson(json,new TypeToken<List<comment>>(){}.getType());
+
+    }
 
 
 }

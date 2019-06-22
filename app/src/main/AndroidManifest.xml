@@ -26,6 +26,7 @@
             </intent-filter>
 
         </activity>
+
         <activity
             android:name=".RegisterEducation"
             android:label="@string/title_activity_register_education"
