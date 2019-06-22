@@ -1,5 +1,6 @@
 package com.example.zyf.application;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -48,6 +49,7 @@ public class SuperiorActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         replaceFragment(new apply_fragment());
+
     }
     /*
     * 碎片实例
