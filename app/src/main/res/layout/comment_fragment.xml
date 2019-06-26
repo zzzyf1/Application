@@ -7,25 +7,23 @@
     tools:context=".DetailActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/SearchText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/discuss"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
-        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintEnd_toStartOf="@+id/SearchButton"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/commentRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/SearchText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,13 +32,14 @@
     </android.support.v7.widget.RecyclerView>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/SearchButton"
         android:layout_width="71dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintBottom_toBottomOf="@+id/SearchText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText"
-        app:srcCompat="@android:drawable/stat_sys_upload" />
+        app:layout_constraintTop_toTopOf="@+id/SearchText"
+        app:srcCompat="@android:drawable/ic_menu_search" />
+
 </android.support.constraint.ConstraintLayout>

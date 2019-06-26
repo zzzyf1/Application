@@ -40,4 +40,5 @@ public class SyncHttpUtil {
             return "请求超时";
         }
     }
+
 }

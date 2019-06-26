@@ -12,9 +12,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,10 +29,10 @@ import com.example.zyf.application.Utils.AsyncHttpUtil;
 import com.example.zyf.application.Utils.CommentAdapter;
 import com.example.zyf.application.Utils.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Manifest;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -49,7 +47,13 @@ public class comment_fragment extends Fragment {
     private TextView second;
     private CommentAdapter adapter;
     private String course_id="123@qwq";
+    private TextView search;
 
+    public static comment_fragment newInstance(Bundle args){
+        comment_fragment fragment=new comment_fragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.comment_fragment,container,false);
@@ -60,31 +64,46 @@ public class comment_fragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         second=getActivity().findViewById(R.id.message);
+        search=getActivity().findViewById(R.id.SearchText);
         RecyclerView mRecyclerView=getActivity().findViewById(R.id.commentRecycler);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
-        adapter=new CommentAdapter(comments);
+        adapter=new CommentAdapter(comments,getActivity());
         //设置布局管理器
         mRecyclerView.setLayoutManager(linearLayoutManager);
         //设置适配器
         mRecyclerView.setAdapter(adapter);
-        initComments();
+        Bundle bundle=getArguments();
+        //根据course_id返回指定评论
+        course_id=bundle.getString("id");
+        initComments(course_id,"1");
 
+        //final ImageView test=getActivity().findViewById(R.id.TEST);
         //测试
-        ImageButton imageButton=getActivity().findViewById(R.id.imageButton);
+        ImageButton imageButton=getActivity().findViewById(R.id.SearchButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String searchID=search.getText().toString().trim();
+                //搜索指定邮箱的评论
+                initComments(searchID,"0");
+                /*上传测试
                 if(ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(getActivity(),new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
                 }else{
                     openAlbums();
                 }
+                */
+                //下载测试 http://49.140.124.219:8081/myApplication/files/1.jpg
+                /*String url="http://49.140.124.219:8081/myApplication/files/1.jpg";
+                Glide.with(v.getContext()).load(url).placeholder(R.mipmap.cover).error(android.R.drawable.stat_notify_error).into(test);
+                */
             }
         });
     }
-    public void initComments(){
-        //向服务器请求有关该指定课程的评论
-        AsyncHttpUtil.sendOkHttpRequest("http://49.140.124.219:8081/myApplication/CommentList", course_id, new Callback() {
+    public void initComments(String id,String type){
+
+        //向服务器请求有关评论
+        AsyncHttpUtil.sendOkHttpRequest("http://49.140.124.219:8081/myApplication/CommentList", id,type, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 getActivity().runOnUiThread(new Runnable() {
@@ -108,7 +127,7 @@ public class comment_fragment extends Fragment {
                         if(Tcomments.size()==0){
                             if(second.getVisibility()==View.INVISIBLE)
                                 second.setVisibility(View.VISIBLE);
-                            second.setText("暂时没有相关评论");
+                            second.setText("没有相关评论");
                         }else{
                             if(second.getVisibility()==View.VISIBLE)
                                 second.setVisibility(View.INVISIBLE);
@@ -121,6 +140,7 @@ public class comment_fragment extends Fragment {
         });
 
     }
+    /*
     private void openAlbums(){
         Intent intent=new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
@@ -175,6 +195,7 @@ public class comment_fragment extends Fragment {
             imagePath=uri.getPath();
         }
         Log.d("comment_fragment",imagePath);
+        uploadImage(imagePath);
     }
     private String getImagePath(Uri uri,String selection){
         String path=null;
@@ -188,4 +209,39 @@ public class comment_fragment extends Fragment {
         }
         return path;
     }
+    private void  uploadImage(String filePath){
+        File file=new File(filePath);
+        String fileName=filePath.substring(filePath.lastIndexOf("/")+1);
+        AsyncHttpUtil.Upload("http://49.140.124.219:8081/myApplication/Upload",fileName,file,new Callback(){
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(),"上传失败，请稍后重试",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String returnCode=response.body().string();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(returnCode.equals("1")){
+                            Toast.makeText(getActivity(),"上传成功",Toast.LENGTH_SHORT).show();
+                        }else if(returnCode.equals("-1")){
+                            Toast.makeText(getActivity(),"不要重复上传图片",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getActivity(),"上传失败，请稍后重试",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+    */
 }

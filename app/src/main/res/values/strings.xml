@@ -47,7 +47,7 @@
 
     <!--评论-->
     <string name="comment_id">评论ID</string>
-    <string name="discuss">发表评论</string>
     <string name="comment_date">评论时间</string>
     <string name="comment">评论内容</string>
+    <string name="discuss">请输入用户ID</string>
 </resources>

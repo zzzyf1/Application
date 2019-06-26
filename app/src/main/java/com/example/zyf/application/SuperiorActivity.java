@@ -30,7 +30,9 @@ public class SuperiorActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
-                    replaceFragment(new comment_fragment());
+                    Bundle args=new Bundle();
+                    args.putString("id","123@qwq");
+                    replaceFragment(comment_fragment.newInstance(args));
                     return true;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);
@@ -62,7 +64,6 @@ public class SuperiorActivity extends AppCompatActivity {
         FragmentTransaction transaction=fragmentManager.beginTransaction();
         transaction.replace(R.id.superiorFragment,fragment);
         transaction.commit();
-
     }
 
 }
