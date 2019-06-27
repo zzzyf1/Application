@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.zyf.application.Fragments.apply_fragment;
 import com.example.zyf.application.Fragments.comment_fragment;
+import com.example.zyf.application.Fragments.issue_fragment;
 
 
 public class SuperiorActivity extends AppCompatActivity {
@@ -36,6 +37,7 @@ public class SuperiorActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);
+                    replaceFragment(new issue_fragment());
                     return true;
             }
             return false;

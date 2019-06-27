@@ -50,4 +50,10 @@
     <string name="comment_date">评论时间</string>
     <string name="comment">评论内容</string>
     <string name="discuss">请输入用户ID</string>
+    <!---->
+    <string name="upload">上传课程图片</string>
+    <string name="issue">发布公告</string>
+    <string name="issueHomeWork">发布作业</string>
+    <string name="inputCourseId">输入课程id</string>
+    <string name="done">完成</string>
 </resources>

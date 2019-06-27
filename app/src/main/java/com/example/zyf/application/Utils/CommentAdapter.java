@@ -24,6 +24,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
     private List<comment> comments;
     private Activity test;
+
     //内部类实现缓存器,缓存布局以及该布局里包含的控件
     static  class ViewHolder extends RecyclerView.ViewHolder{
         TextView mCommentId;

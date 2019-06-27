@@ -36,10 +36,13 @@
             android:label="@string/title_activity_superior" />
         <activity
             android:name=".DetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VideoActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UploadCourseActivity" />
+        <activity android:name=".BoardActivity" />
+        <activity android:name=".HomeworkActivity"></activity>
     </application>
 
 </manifest>
