@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/selectCourseCover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="44dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:background="@android:color/transparent"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/upCourseId"
         app:layout_constraintVertical_bias="0.571"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        app:srcCompat="@mipmap/selectimage" />
 
     <ImageView
         android:id="@+id/Cou_imageView"

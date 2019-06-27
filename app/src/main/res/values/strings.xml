@@ -41,7 +41,7 @@
     <string name="title_home">Home</string>
     <string name="data_request">数据加载中...</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">notifications</string>
 
     <string name="domain2">教育领域</string>
 
@@ -56,4 +56,8 @@
     <string name="issueHomeWork">发布作业</string>
     <string name="inputCourseId">输入课程id</string>
     <string name="done">完成</string>
+    <string name="done2">发布</string>
+    <string name="board">公告板</string>
+    <string name="applyVideo">试听申请</string>
+    <string name="purchase">购买</string>
 </resources>

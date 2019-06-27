@@ -52,7 +52,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         holder.mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final View V=v;
                 final int position=holder.getAdapterPosition();
                 int comment_id=comments.get(position).getComment_id();
                 //根据该条评论的id删除该条评论
@@ -60,7 +59,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
                     @Override
                     public void onFailure(Call call, IOException e) {
                         //失败
-                        Toast.makeText(V.getContext(),"删除失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(test,"删除失败",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -73,12 +72,19 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
                                 @Override
                                 public void run() {
                                     CommentAdapter.this.notifyItemRemoved(position);
+
                                 }
                             });
                             //CommentAdapter.this.notifyItemMoved(position,position+1);
                         }else{
                             //利用snackbar提示
-                            Toast.makeText(V.getContext(),"删除失败",Toast.LENGTH_SHORT).show();
+                            test.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(test,"删除失败",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                         }
 
                     }

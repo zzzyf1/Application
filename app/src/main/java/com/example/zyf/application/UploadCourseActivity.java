@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -36,12 +37,15 @@ import okhttp3.Response;
 public class UploadCourseActivity extends AppCompatActivity {
     private String imagePath="#";
     private ImageView imageView2;
+    private String ID="#";
+    private EditText upLoadId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_course);
         final ImageView imageView=findViewById(R.id.selectCourseCover);
         Button upLoadButton=findViewById(R.id.UpLoadCou);
+        upLoadId=findViewById(R.id.upCourseId);
         imageView2=findViewById(R.id.Cou_imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +54,6 @@ public class UploadCourseActivity extends AppCompatActivity {
                     ActivityCompat.requestPermissions(UploadCourseActivity.this,new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
                 }else{
                     openAlbums();
-                    //Glide.with(v.getContext()).load(imagePath).error(android.R.drawable.stat_notify_error).into(imageView2);
                 }
 
             }
@@ -60,8 +63,13 @@ public class UploadCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!imagePath.equals("#")){
-                    //uploadImage(imagePath);
-                    Log.d("UploadCourseActivity",imagePath);
+                    ID=upLoadId.getText().toString().trim();
+                    if(!ID.equals("")){
+                        uploadImage(imagePath);
+                    }else{
+                        Toast.makeText(UploadCourseActivity.this,"请填写对应课程的id",Toast.LENGTH_SHORT).show();
+                    }
+
                 }else{
                     Toast.makeText(UploadCourseActivity.this,"请先选择图片",Toast.LENGTH_SHORT).show();
                 }
@@ -71,11 +79,6 @@ public class UploadCourseActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
     private void openAlbums(){
         Intent intent=new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
@@ -129,7 +132,7 @@ public class UploadCourseActivity extends AppCompatActivity {
             imagePath=uri.getPath();
         }
         //Log.d("comment_fragment",imagePath);
-        display(imagePath);
+        display();
 
     }
     private String getImagePath(Uri uri,String selection){
@@ -146,8 +149,9 @@ public class UploadCourseActivity extends AppCompatActivity {
     }
     private void  uploadImage(String filePath){
         File file=new File(filePath);
-        String fileName=filePath.substring(filePath.lastIndexOf("/")+1);
-        AsyncHttpUtil.Upload("http://49.140.124.219:8081/myApplication/Upload",fileName,file,new Callback(){
+        String fileName=filePath.substring(filePath.lastIndexOf("/")+1)+"#"+ID;
+
+        AsyncHttpUtil.Upload("http://49.140.124.219:8081/myApplication/Upload",fileName,file,ID,new Callback(){
 
             @Override
             public void onFailure(Call call, IOException e) {
@@ -165,12 +169,14 @@ public class UploadCourseActivity extends AppCompatActivity {
                 UploadCourseActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(returnCode.equals("1")){
+                        if(returnCode.equals("0")){
                             Toast.makeText(UploadCourseActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
-                        }else if(returnCode.equals("-1")){
+                        }else if(returnCode.equals("-5")){
                             Toast.makeText(UploadCourseActivity.this,"不要重复上传图片",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(UploadCourseActivity.this,"上传失败，请稍后重试",Toast.LENGTH_SHORT).show();
+                        }else if(returnCode.equals("-1")){
+                            Toast.makeText(UploadCourseActivity.this,"上传失败，请检查课程ID",Toast.LENGTH_SHORT).show();
+                        }else if(returnCode.equals("-2")){
+                            Toast.makeText(UploadCourseActivity.this,"上传失败，服务器正在维护中",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -178,7 +184,7 @@ public class UploadCourseActivity extends AppCompatActivity {
         });
 
     }
-    private void display(String url){
+    private void display(){
         if(!imagePath.equals("#")){
             Bitmap bitmap=BitmapFactory.decodeFile(imagePath);
             imageView2.setImageBitmap(bitmap);

@@ -44,11 +44,13 @@ public class AsyncHttpUtil {
     }
 
     //上传照片
-    public static void Upload(String address, String fileName, File file,okhttp3.Callback callback) {
+    public static void Upload(String address, String fileName, File file,String id,okhttp3.Callback callback) {
         try{
+
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("file",fileName,RequestBody.create(MediaType.parse("image/jpg"),file)).build();
-                    //装载请求
+            RequestBody requestBody2 = new FormBody.Builder().add("id", id).build();
+            //装载请求
             Request request = new Request.Builder().url(address).post(requestBody).build();
             //发送请求
             client.newCall(request).enqueue(callback);

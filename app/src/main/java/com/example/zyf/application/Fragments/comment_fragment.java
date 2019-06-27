@@ -195,7 +195,7 @@ public class comment_fragment extends Fragment {
             imagePath=uri.getPath();
         }
         Log.d("comment_fragment",imagePath);
-        uploadImage(imagePath);
+        upload(imagePath);
     }
     private String getImagePath(Uri uri,String selection){
         String path=null;
@@ -209,7 +209,7 @@ public class comment_fragment extends Fragment {
         }
         return path;
     }
-    private void  uploadImage(String filePath){
+    private void  upload(String filePath){
         File file=new File(filePath);
         String fileName=filePath.substring(filePath.lastIndexOf("/")+1);
         AsyncHttpUtil.Upload("http://49.140.124.219:8081/myApplication/Upload",fileName,file,new Callback(){
